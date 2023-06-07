@@ -1,0 +1,81 @@
+create database jhdb default character set UTF8;
+use jhdb;
+show tables;
+exit;
+
+use jhdb;
+
+-- 학생 테이블 생성
+CREATE TABLE STUDENT(
+	NUM INT PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(15) NOT NULL,
+	SCORE INT DEFAULT 0,
+	POS VARCHAR(10) NOT NULL,
+	LV INT DEFAULT 5
+);
+
+-- 데이터 삽입
+INSERT INTO STUDENT (NAME, POS) VALUES('티모','탑');
+INSERT INTO STUDENT (NAME, SCORE, POS) VALUES('아리', 80, '미드');
+INSERT INTO STUDENT (NAME, SCORE, POS, LV) VALUES('아무무', 82, '서포터', 6);
+INSERT INTO STUDENT (NAME,SCORE,POS,LV) VALUES('모르가나',73,'서포터',7);
+INSERT INTO STUDENT (NAME,SCORE,POS,LV) VALUES('오리아나',24,'미드',8);
+INSERT INTO STUDENT (NAME,SCORE,POS,LV) VALUES('에코',13,'정글',9);
+INSERT INTO STUDENT (NAME,SCORE,POS,LV) VALUES('이즈리얼',45,'바텀',10);
+INSERT INTO STUDENT (NAME,POS) VALUES('그웬','탑');
+INSERT INTO STUDENT (NAME,POS) VALUES('이렐리아','탑');
+INSERT INTO STUDENT (NAME,POS,SCORE) VALUES('잭스','탑',50);
+INSERT INTO STUDENT (NAME,POS,LV) VALUES('말파이트','탑',6);
+INSERT INTO STUDENT (NAME,POS) VALUES('진','바텀');
+
+-- 입력한 결과 확인
+SELECT * FORM STUDENT;
+
+-- NUM이 13인 학생을 점수는 1, 레벨은 4로 변경
+UPDATE STUDENT SET SCORE = 1, LV=4 WHERE NUM = 13;
+
+-- NUM이 13인 학생을 삭제
+DELETE FROM STUDENT WHERE NUM =13;
+
+--학생 테이블에서 이름 포지션만 검색
+SELECT NAME, POS FROM STUDENT;
+
+-- 번호가 6 이하이면서 점수는 20 초과 포지션은 정글,바텀,서포터인 목록 검색
+SELECT * FROM STUDENT WHERE NUM <= 6 AND SCORE >20 AND POS IN('정글', '바텀', '서포터');
+
+-- 포지션 열이 탐인 데이터 중에 점수열이 50 미만인 데이터 검색
+SELECT * FROM STUDENT WHERE POS ='탑' AND SCORE<50;
+
+-- 위의 결과를 정렬
+SELECT * FROM STUDENT WHERE POS ='탑' AND SCORE<50 ORDER BY LV DESC;
+
+-- 같은 레벨일때 번호가 높은 순 정렬
+SELECT * FROM STUDENT WHERE POS ='탑' AND SCORE<50 ORDER BY LV ASC, NUM DESC;
+
+-- 이름에 '아'가 들어가는 데이터 검색
+SELECT * FROM STUDENT WHERE NAME LIKE '%아%' ;
+
+-- 학생 테이블 제거
+DROP TABLE STUDENT;
+
+
+
+-- Q. 숫자 형식의 열 3개(a,b,c)를 가진 apple 테이블을 생성
+CREATE TABLE APPLE(
+	A INT PRIMARY KEY,
+	B INT,
+	C INT
+);
+
+-- Q. apple 테이블에 a,b,c 열 순서대로 (5,3,7) 데이터와 (1,4,9) 데이터를 삽입
+INSERT INTO APPLE (A,B,C) VALUES (5, 3, 7);
+INSERT INTO APPLE (A,B,C) VALUES (1, 4, 9);
+
+-- Q. apple 테이블에서 b의 값이 3인 데이터를 5로 수정
+UPDATE APPLE SET B=5 WHERE B=3;
+
+-- Q. apple 테이블에서 a의 값이 5인 데이터를 삭제
+DELETE FROM APPLE WHERE A=5;
+
+-- Q. apple 테이블을 삭제
+DROP TABLES APPLE;
