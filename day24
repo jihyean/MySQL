@@ -1,0 +1,35 @@
+CREATE TABLE STUDENT(
+NUM INT PRIMARY KEY AUTO_INCREMENT,
+NAME VARCHAR(15) NOT NULL,
+SCORE INT DEFAULT 0
+);
+
+INSERT INTO STUDENT (NAME,SCORE) VALUES ('홍길동', 90);
+
+SELECT NUM, NAME, SCORE FROM STUDENT;
+
++-----+--------+-------+
+| NUM | NAME   | SCORE |
++-----+--------+-------+
+|   1 | 홍길동 |    90 |
++-----+--------+-------+
+1 row in set (0.00 sec)
+
+-- JDBC 연결 후 쿼리 INSERT
++-----+--------+-------+
+| NUM | NAME   | SCORE |
++-----+--------+-------+
+|   1 | 홍길동 |    90 |
+|   2 | 임꺽정 |    80 |
++-----+--------+-------+
+2 rows in set (0.00 sec)
+
+
++-----+--------+-------+
+| NUM | NAME   | SCORE |
++-----+--------+-------+
+|   1 | 홍길동 |     0 |
+|   3 | 철수   |    50 |
+|   4 | 티모   |    79 |
++-----+--------+-------+
+3 rows in set (0.00 sec)
